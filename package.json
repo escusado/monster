@@ -1,0 +1,21 @@
+{
+  "name": "project",
+  "version": "0.1.0",
+  "engines": {
+    "node": "0.10.30"
+  },
+  "dependencies": {
+    "chroma-js": "^1.1.1",
+    "neon": "^2.0.0",
+    "serpentity": "^0.1.7",
+    "three.js": "^0.72.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.9.10",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4"
+  }
+}
