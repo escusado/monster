@@ -1,7 +1,7 @@
 var gulp        = require('gulp'),
     browserSync = require('browser-sync').create(),
     sass        = require('gulp-sass'),
-    cleanDest   = require('gulp-clean-dest');
+    clean       = require('gulp-clean');
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass', 'indexFile', 'js'], function() {
@@ -15,13 +15,20 @@ gulp.task('serve', ['sass', 'indexFile', 'js'], function() {
         }
     });
 
-    gulp.watch('src/index.html', ['indexFile']).pipe(cleanDest('public/index.html'));
-    gulp.watch('src/scss/**/*.scss', ['sass']).pipe(cleanDest('public/css/**/*.scss'));
-    gulp.watch('src/js/**/*.js', ['js']).pipe(cleanDest('public/js/**/*.js'));
+    // gulp.watch('src/scss/**/*.scss', ['sass']);
+    // gulp.watch('src/index.html', ['indexFile']);
+    // gulp.watch('src/js/**/*.js', ['js']);
+    gulp.watch('src/**/**', ['clean', 'indexFile', 'sass', 'js']);
     gulp.watch(['public/index.html','public/js/*.js']).on('change', browserSync.reload);
 });
 
 // Compile sass into CSS & auto-inject into browsers
+
+gulp.task('clean', function() {
+    return gulp.src('public/')
+        .pipe(clean())
+        .pipe(gulp.dest('public/'));
+});
 
 gulp.task('indexFile', function() {
     return gulp.src('src/index.html')
