@@ -1,6 +1,6 @@
 'use strict';
 
-class Monster{
+class App{
   constructor(conf){
     Object.assign(this, conf);
   };
@@ -10,21 +10,10 @@ class Monster{
   };
 
   createGrid(){
-    
+
   };
 
   run(){
     console.log('>', this.size);
   };
 };
-
-window.app = new Monster({
-  size:{
-    w: 10,
-    h: 10
-  }
-});
-
-app.render(document.body)
-app.setup();
-app.run();
