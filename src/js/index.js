@@ -2,14 +2,13 @@
 
 let onDomReady = function onDomReady() {
 
-  let renderEngine = new ThreeEngine({
+  window.app = new App({
+    gridSize : {
+      w: 10,
+      h: 10
+    }
+  });
 
-      }),
-      entityEngine = new SerpentityEngine({
-
-      });
-
-  window.app = new App({renderEngine, entityEngine});
   app.render(document.getElementsByClassName('wrapper')[0]);
   app.setup();
   app.run();
