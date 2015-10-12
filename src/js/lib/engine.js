@@ -1,6 +1,6 @@
 'use strict';
 
-class App {
+class Engine {
   constructor (conf) {
     Object.assign(this, conf);
 
@@ -19,13 +19,17 @@ class App {
 
   setup(){
     this._bindEvents();
-    this.renderEngine.setup();
     this.entityEngine.setup();
     this.resize();
   };
 
   _bindEvents () {
     window.addEventListener('resize', this.resize.bind(this));
+    this.renderEngine.on('update', this._update.bind(this));
+  };
+
+  _update () {
+
   };
 
   resize () {

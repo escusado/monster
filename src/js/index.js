@@ -2,16 +2,16 @@
 
 let onDomReady = function onDomReady() {
 
-  window.app = new App({
+  window.engine = new Engine({
     gridSize : {
       w: 10,
       h: 10
     }
   });
 
-  app.render(document.getElementsByClassName('wrapper')[0]);
-  app.setup();
-  app.run();
+  engine.render(document.getElementsByClassName('wrapper')[0]);
+  engine.setup();
+  engine.run();
 };
 
 //on dom ready

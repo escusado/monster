@@ -1,29 +1,26 @@
 'use strict';
 
-class ThreejsEngine extends Widget {
+class ThreejsEngine extends TinyDispatcher {
   constructor(conf){
+    super();
     Object.assign(this, conf);
 
     this.time = 0;
 
+    this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 20000);
     this.scene = new THREE.Scene();
     this.renderer = new THREE.WebGLRenderer({antialias:true});
     this.element = this.renderer.domElement;
   };
 
-  setup(){
-    console.log('> ThreeSetup');
-  };
-
   resize (newSize) {
+    this.camera.aspect = newSize.w / newSize.h;
+    this.camera.updateProjectionMatrix();
     this.renderer.setSize(newSize.w, newSize.h);
   };
 
-  update(){
-    console.log('> ThreeUpdate');
-  };
-
   animate () {
+    this.dispatch('beforeUpdate');
     let now = new Date().getTime(),
         updateData = {
             now: now,
@@ -36,6 +33,9 @@ class ThreejsEngine extends Widget {
       data: updateData
     });
 
+    this.renderer.render( this.scene, this.camera );
+
+    this.dispatch('afterUpdate');
     requestAnimationFrame(this.animate.bind(this));
   };
 
